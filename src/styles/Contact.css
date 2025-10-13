@@ -45,15 +45,6 @@
   padding: 20px 0;
 }
 
-.contact-form-title {
-  color: #029d7b;
-  font-weight: 600;
-  font-size: 2rem;
-  margin-bottom: 30px;
-  text-transform: capitalize;
-}
-
-/* Floating Label Inputs */
 .form-floating > .form-control {
   border-radius: 0;
   border: 1px solid #ccc;
@@ -69,12 +60,6 @@
 .form-floating > label {
   color: #6b6b6b;
   font-weight: 600;
-}
-
-/* Textarea Styling */
-.form-floating textarea.form-control {
-  height: 200px !important;
-  resize: none !important;
 }
 
 /* Send Button */
@@ -97,11 +82,6 @@
   background-color: #027f63;
 }
 
-/* Spinner inside Button */
-button:disabled {
-  opacity: 0.9;
-}
-
 /* Map */
 .map-container iframe {
   width: 100%;
@@ -112,67 +92,66 @@ button:disabled {
 /* === Contact Info Cards Section === */
 .contact-info-section {
   background-color: #f8f9fa;
-  padding-top: 80px;
-  padding-bottom: 80px;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 .contact-info-card {
   border: 1px solid #029d7b;
-  border-radius: 0;
-  transition: all 0.3s ease;
+  border-radius: 0; /* No rounded corners */
   box-shadow: 0 0 10px rgba(2, 157, 123, 0.1);
+  transition: all 0.3s ease;
   cursor: pointer;
-  height: 300px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
 }
 
 .contact-info-card:hover {
-  box-shadow: 0 0 20px rgba(2, 157, 123, 0.3);
-  transform: translateY(-5px);
+  box-shadow: 0 0 15px rgba(2, 157, 123, 0.3);
+  transform: translateY(-4px);
+}
+
+.contact-icon-box {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e6f8f3;
+  color: #029d7b;
 }
 
 .contact-icon {
-  color: #029d7b;
-  font-size: 2rem;
-  margin-bottom: 15px;
+  font-size: 1.6rem;
+}
+
+.contact-info-text-box {
+  flex: 1;
 }
 
 .contact-info-text {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #333;
-  margin-bottom: 0;
-  line-height: 1.6;
+  line-height: 1.4;
 }
 
-/* Equal card height */
-.contact-info-card .card-body {
-  height: 220px;
-}
-
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 768px) {
-  .contact-hero-heading {
-    font-size: 2.2rem;
+  .contact-info-card {
+    height: 100px;
+    padding: 1rem;
   }
-
-  .map-container iframe {
-    height: 400px;
+  .contact-icon-box {
+    width: 50px;
+    height: 50px;
   }
-
+  .contact-icon {
+    font-size: 1.4rem;
+  }
   .contact-info-text {
-    font-size: 1rem;
-  }
-
-  .contact-info-card .card-body {
-    height: auto;
-  }
-}
-
-@media (max-width: 480px) {
-  .contact-hero-heading {
-    font-size: 1.6rem;
-  }
-
-  .contact-form-title {
-    font-size: 1.6rem;
+    font-size: 0.9rem;
   }
 }

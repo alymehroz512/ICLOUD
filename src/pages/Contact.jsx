@@ -34,7 +34,7 @@ function Contact() {
 
   const contactInfo = [
     {
-      icon: <FaMapMarkerAlt className="contact-icon mb-3" />,
+      icon: <FaMapMarkerAlt className="contact-icon" />,
       text: (
         <>
           11732 SE 269th Pl
@@ -44,11 +44,11 @@ function Contact() {
       ),
     },
     {
-      icon: <FaPhoneAlt className="contact-icon mb-3" />,
+      icon: <FaPhoneAlt className="contact-icon" />,
       text: "+1 214 699 6207",
     },
     {
-      icon: <FaEnvelope className="contact-icon mb-3" />,
+      icon: <FaEnvelope className="contact-icon" />,
       text: "info@hoopoelabs.com",
     },
   ];
@@ -93,7 +93,6 @@ function Contact() {
             {/* Right Column - Contact Form */}
             <Col md={6}>
               <div className="contact-form">
-                {/* <h3 className="contact-form-title">Let's Connect</h3> */}
                 <Form onSubmit={handleSubmit}>
                   {/* First Row - Name, Email, Phone */}
                   <Row className="mb-3">
@@ -202,14 +201,14 @@ function Contact() {
       {/* Contact Info Cards Section */}
       <section className="contact-info-section py-5">
         <Container>
-          <Row className="g-4 justify-content-center text-center">
+          <Row className="justify-content-center text-center g-3">
             {contactInfo.map((item, index) => (
-              <Col md={4} key={index}>
-                <Card className="contact-info-card text-center p-4">
-                  <Card.Body className="d-flex flex-column align-items-center justify-content-center">
-                    {item.icon}
-                    <h5 className="contact-info-text">{item.text}</h5>
-                  </Card.Body>
+              <Col key={index} md={4}>
+                <Card className="contact-info-card d-flex flex-row align-items-center p-3">
+                  <div className="contact-icon-box me-3">{item.icon}</div>
+                  <div className="contact-info-text-box text-start">
+                    <h6 className="contact-info-text mb-0">{item.text}</h6>
+                  </div>
                 </Card>
               </Col>
             ))}
