@@ -30,7 +30,7 @@ import {
   FaChevronLeft,
   FaChevronRight,
 } from "react-icons/fa";
-import About from "../assets/about.jpg";
+import About from "../assets/AboutHome.jpg";
 
 const Home = () => {
   const images = [ComH, IT, Office, Industrial, Furniture, Medical];
