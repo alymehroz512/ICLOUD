@@ -15,6 +15,7 @@
   transition: color 0.3s ease;
   cursor: pointer;
   font-weight: 600 !important;
+  
 }
 
 .nav-link-custom:hover {
@@ -51,5 +52,6 @@
   .nav-link-custom {
     display: block;
     text-align: start;
+    margin-left: 20px !important;
   }
 }

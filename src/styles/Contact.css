@@ -140,6 +140,9 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .contact-hero-heading {
+    font-size: 1.8rem;
+  }
   .contact-info-card {
     height: 100px;
     padding: 1rem;

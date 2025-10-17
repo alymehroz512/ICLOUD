@@ -6,10 +6,6 @@ import {
   FaMapMarkerAlt,
   FaPhoneAlt,
   FaPaperPlane,
-  FaFileContract,
-  FaIdBadge,
-  FaKey,
-  FaBuilding,
   FaFacebookF,
   FaLinkedinIn,
   FaInstagram,
@@ -69,42 +65,19 @@ function Footer() {
             </div>
           </Col>
 
-          {/* GSA Contract */}
+          {/* Quick Links */}
           <Col lg={2} md={6} className="footer-col text-start">
             <div>
-              <h5 className="footer-heading">GSA Contract</h5>
-              <ul className="footer-gsa list-unstyled">
-                <li>
-                  <FaFileContract className="footer-icon mt-1" />
-                  <span>47QTCA25D00EJ</span>
-                </li>
-                <li>
-                  <FaIdBadge className="footer-icon mt-1" />
-                  <span>093-613-345</span>
-                </li>
-                <li>
-                  <FaKey className="footer-icon mt-1" />
-                  <span>K8QQY192NVC6</span>
-                </li>
-                <li>
-                  <FaBuilding className="footer-icon mt-1" />
-                  <span>111A8</span>
-                </li>
-              </ul>
+              <h5 className="footer-heading">Quick Links</h5>
+              <div className="footer-bottom-links flex-column align-items-start mt-3">
+                <Link to="/" className="footer-bottom-link">Home</Link>
+                <Link to="/about" className="footer-bottom-link">About</Link>
+                <Link to="/services" className="footer-bottom-link">Services</Link>
+                <Link to="/contact" className="footer-bottom-link">Contact</Link>
+              </div>
             </div>
           </Col>
         </Row>
-
-        {/* Quick Links Centered Before HR */}
-        <div className="footer-bottom-links text-center mt-sm-2 mt-lg-5 mb-5">
-          <Link to="/" className="footer-bottom-link">Home</Link>
-          <div className="vr mx-3"></div>
-          <Link to="/about" className="footer-bottom-link">About</Link>
-          <div className="vr mx-3"></div>
-          <Link to="/services" className="footer-bottom-link">Services</Link>
-          <div className="vr mx-3"></div>
-          <Link to="/contact" className="footer-bottom-link">Contact</Link>
-        </div>
 
         {/* Pulse HR Line */}
         <hr className="footer-divider pulse-line" />
@@ -113,20 +86,20 @@ function Footer() {
         <Row className="justify-content-between align-items-center mt-3">
           <Col md="6" className="text-md-start text-center mb-3 mb-md-0">
             <p className="footer-copy">
-              © {new Date().getFullYear()} <strong style={{color: '#029d7b'}}>i Cloud Technologies LLC</strong> All rights reserved
+              © {new Date().getFullYear()} <strong style={{color: '#029d7b' , textTransform: 'uppercase'}}>icloud technologies</strong> All rights reserved
             </p>
           </Col>
           <Col md="6" className="text-md-end text-center">
             <div className="footer-social d-flex justify-content-center justify-content-md-end gap-2 flex-wrap">
-              <a href="#" target="_blank" rel="noopener noreferrer">
+              <Link to="#" target="_blank" rel="noopener noreferrer">
                 <FaFacebookF className="social-icon" />
-              </a>
-              <a href="#" target="_blank" rel="noopener noreferrer">
+              </Link>
+              <Link to="#" target="_blank" rel="noopener noreferrer">
                 <FaLinkedinIn className="social-icon" />
-              </a>
-              <a href="#" target="_blank" rel="noopener noreferrer">
+              </Link>
+              <Link to="#" target="_blank" rel="noopener noreferrer">
                 <FaInstagram className="social-icon" />
-              </a>
+              </Link>
             </div>
           </Col>
         </Row>

@@ -1,0 +1,322 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
+}
+
+/* -----------------------------
+   Hero Section
+----------------------------- */
+.industrial-hero {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.industrial-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(2, 157, 123, 0.5);
+  z-index: 1;
+}
+
+.industrial-hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.industrial-hero-heading {
+  font-size: 3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* -----------------------------
+   Filter Dropdown Section
+----------------------------- */
+.industrial-filter-section {
+  background-color: #f8f9fa;
+  position: relative;
+}
+
+.filter-dropdown {
+  position: absolute;
+  top: -25px;
+  left: 40px;
+  z-index: 10;
+}
+
+.filter-dropdown-toggle {
+  background-color: #029d7b !important;
+  border: none !important;
+  border-radius: 0 !important;
+  font-weight: 600;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 230px;
+}
+
+.no-caret::after {
+  display: none !important;
+  content: none !important;
+}
+
+.filter-dropdown-toggle:hover,
+.filter-dropdown-toggle:focus {
+  background-color: #028a6d !important;
+  outline: none !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+.dropdown-icon {
+  font-size: 0.9rem;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-icon.rotate {
+  transform: rotate(180deg);
+}
+
+.filter-dropdown-menu {
+  border: none !important;
+  border-radius: 0 !important;
+  margin-top: 2px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  min-width: 250px;
+  animation: fadeInDropdown 0.3s ease;
+}
+
+@keyframes fadeInDropdown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.filter-dropdown-menu .dropdown-item {
+  color: #029d7b !important;
+  transition: all 0.2s ease;
+  border-radius: 0 !important;
+}
+
+.filter-dropdown-menu .dropdown-item:hover {
+  background-color: #029d7b;
+  color: #ffffff !important;
+}
+
+/* -----------------------------
+   Product Cards
+----------------------------- */
+.industrial-products {
+  margin-top: 2rem;
+}
+
+.industrial-card {
+  background-color: #f8f9fa !important;
+  border: 1px solid #029d7b !important; /* Added border color to match theme */
+  border-radius: 0 !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.industrial-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Folded Ribbon for Product Name, Centered at Top */
+.industrial-ribbon {
+  font-size: 1rem;
+  color: #ffffff;
+  position: absolute;
+  top: -10px; /* Adjusted to extend further outside */
+  left: 50%;
+  transform: translateX(-50%);
+  border-bottom: 0.8em solid #0008;
+  line-height: 1.8;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 0.8em), calc(100% - 0.8em) 100%, calc(100% - 0.8em) calc(100% - 0.8em), 0.8em calc(100% - 0.8em), 0.8em 100%, 0 calc(100% - 0.8em));
+  background-color: #029d7b !important;
+  z-index: 2;
+  padding: 8px 20px;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 120%; /* Increased width to extend beyond card */
+  max-width: 300px; /* Prevent overly long ribbons */
+  animation: wave 2s infinite ease-in-out;
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-3px);
+  }
+}
+
+/* Equal large image wrapper */
+.industrial-image-wrapper {
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 340px;
+  padding: 20px;
+}
+
+/* Equal image dimensions */
+.industrial-image {
+  width: 280px;
+  height: 280px;
+  object-fit: contain;
+}
+
+/* Card Body (for button slide-up) */
+.industrial-card .card-body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 0;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Slide up on hover */
+.industrial-card:hover .card-body {
+  transform: translateY(0);
+}
+
+/* Button */
+.industrial-card .btn {
+  background-color: #029d7b !important;
+  border: none !important;
+  transition: background-color 0.3s ease;
+}
+
+.industrial-card .btn:hover {
+  background-color: #028a6d !important;
+}
+
+/* -----------------------------
+   Responsive Adjustments
+----------------------------- */
+@media (max-width: 992px) {
+  .filter-dropdown {
+    left: 20px;
+    top: -20px;
+  }
+
+  .industrial-image-wrapper {
+    height: 280px;
+  }
+
+  .industrial-image {
+    width: 240px;
+    height: 240px;
+  }
+
+  .industrial-ribbon {
+    font-size: 0.75rem;
+    padding: 6px 15px;
+    border-bottom: 0.6em solid #0008;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 0.6em), calc(100% - 0.6em) 100%, calc(100% - 0.6em) calc(100% - 0.6em), 0.6em calc(100% - 0.6em), 0.6em 100%, 0 calc(100% - 0.6em));
+    width: 110%;
+    max-width: 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  .industrial-hero-heading {
+    font-size: 1.8rem;
+  }
+
+  .filter-dropdown {
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-top: 15px;
+  }
+
+  .filter-dropdown-toggle {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+
+  .industrial-image-wrapper {
+    height: 240px;
+  }
+
+  .industrial-image {
+    width: 200px;
+    height: 200px;
+  }
+
+  .industrial-ribbon {
+    font-size: 0.65rem;
+    padding: 5px 12px;
+    border-bottom: 0.5em solid #0008;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 0.5em), calc(100% - 0.5em) 100%, calc(100% - 0.5em) calc(100% - 0.5em), 0.5em calc(100% - 0.5em), 0.5em 100%, 0 calc(100% - 0.5em));
+    width: 100%;
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .industrial-hero-heading {
+    font-size: 1.5rem;
+  }
+
+  .industrial-image-wrapper {
+    height: 200px;
+  }
+
+  .industrial-image {
+    width: 160px;
+    height: 160px;
+  }
+
+  .industrial-ribbon {
+    font-size: 0.55rem;
+    padding: 4px 10px;
+    border-bottom: 0.4em solid #0008;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 0.4em), calc(100% - 0.4em) 100%, calc(100% - 0.4em) calc(100% - 0.4em), 0.4em calc(100% - 0.4em), 0.4em 100%, 0 calc(100% - 0.4em));
+    width: 90%;
+    max-width: 180px;
+  }
+}
+
+/* --- Wrapper to lift ribbon outside the card --- */
+.industrial-card-wrapper {
+  position: relative;
+  margin-top: 1.8rem; /* adds space for ribbon above */
+}
+
+/* move existing folded ribbon upward outside the card */
+.industrial-card-wrapper .industrial-ribbon {
+  top: -25px; /* adjust upward */
+  z-index: 5;
+}

@@ -49,7 +49,7 @@ function Contact() {
     },
     {
       icon: <FaEnvelope className="contact-icon" />,
-      text: "info@hoopoelabs.com",
+      text: "info@icloudtechnologies.com",
     },
   ];
 

@@ -53,8 +53,7 @@ const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const leftColRef = useRef(null);
   const [imageHeight, setImageHeight] = useState("auto");
-
-  const carouselImages = [
+  const originalImages = [
     Carousel1,
     Carousel2,
     Carousel3,
@@ -62,17 +61,29 @@ const Home = () => {
     Carousel5,
     Carousel6,
   ];
-  const [featuredIndex, setFeaturedIndex] = useState(0);
 
-  const handlePrev = () => {
-    setFeaturedIndex((prev) =>
-      prev === 0 ? carouselImages.length - 1 : prev - 1
-    );
-  };
+  // Carousel state and refs
+  const [numVisible, setNumVisible] = useState(3);
+  const [isPaused, setIsPaused] = useState(false);
+  const carouselRef = useRef(null);
+  const trackRef = useRef(null);
+  const animationRef = useRef(null);
+  const totalSlides = originalImages.length;
 
-  const handleNext = () => {
-    setFeaturedIndex((prev) => (prev + 1) % carouselImages.length);
-  };
+  // Create extended array for seamless infinite loop
+  const extendedImages = [
+    ...originalImages,
+    ...originalImages,
+    ...originalImages,
+  ];
+  const totalExtendedSlides = extendedImages.length;
+
+  // Refs to preserve animation state
+  const currentPositionRef = useRef(0);
+  const startTimeRef = useRef(null);
+  const pauseTimeRef = useRef(0);
+  const isPausedRef = useRef(false);
+  const resetPositionRef = useRef(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -92,32 +103,200 @@ const Home = () => {
     return () => window.removeEventListener("resize", updateHeight);
   }, []);
 
-  // Calculate the images to display (three at a time for larger screens, one for smaller screens)
-  const getVisibleImages = () => {
-    const isSmallScreen = window.innerWidth <= 767;
-    const visibleImages = [];
-    if (isSmallScreen) {
-      visibleImages.push(carouselImages[featuredIndex]);
-    } else {
-      for (let i = 0; i < 3; i++) {
-        const index = (featuredIndex + i) % carouselImages.length;
-        visibleImages.push(carouselImages[index]);
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 767) {
+        setNumVisible(1);
+      } else if (window.innerWidth <= 991) {
+        setNumVisible(2);
+      } else {
+        setNumVisible(3);
       }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Sync ref with state
+  useEffect(() => {
+    isPausedRef.current = isPaused;
+  }, [isPaused]);
+
+  // Constant speed animation with seamless looping
+  useEffect(() => {
+    const speed = 100; // pixels per second - adjust for speed
+
+    const animate = (timestamp) => {
+      if (!startTimeRef.current) {
+        startTimeRef.current = timestamp;
+      }
+
+      if (!trackRef.current || !carouselRef.current) {
+        animationRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
+      const containerWidth = carouselRef.current.clientWidth;
+      const cardWidth = containerWidth / numVisible;
+      // const totalWidth = cardWidth * totalExtendedSlides;
+      const resetThreshold = cardWidth * (totalSlides * 2); // Reset at 2/3 of total
+
+      if (isPausedRef.current) {
+        // When paused, store the current time to adjust later
+        if (!pauseTimeRef.current) {
+          pauseTimeRef.current = timestamp;
+        }
+      } else {
+        // When resuming, adjust start time to account for pause duration
+        if (pauseTimeRef.current) {
+          const pauseDuration = timestamp - pauseTimeRef.current;
+          startTimeRef.current += pauseDuration;
+          pauseTimeRef.current = 0;
+        }
+
+        // Calculate elapsed time
+        const elapsed = (timestamp - startTimeRef.current) / 1000; // Convert to seconds
+
+        // Update position based on elapsed time and speed
+        let newPosition = elapsed * speed;
+
+        // Check if we need to reset position for seamless loop
+        if (newPosition >= resetThreshold && !resetPositionRef.current) {
+          resetPositionRef.current = true;
+          // Reset to beginning of middle section for seamless transition
+          startTimeRef.current = timestamp;
+          newPosition = cardWidth * totalSlides; // Reset to middle section
+
+          // Apply immediate reset without transition
+          trackRef.current.style.transition = "none";
+          trackRef.current.style.transform = `translateX(-${newPosition}px)`;
+
+          // Force reflow
+          trackRef.current.offsetHeight;
+
+          // Reset the flag after a short delay
+          setTimeout(() => {
+            resetPositionRef.current = false;
+          }, 50);
+        } else {
+          // Apply transform for right to left movement
+          trackRef.current.style.transform = `translateX(-${newPosition}px)`;
+          trackRef.current.style.transition = "none";
+        }
+
+        // Update the position ref
+        currentPositionRef.current = newPosition;
+      }
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [numVisible, totalExtendedSlides, totalSlides]);
+
+  const handlePrev = () => {
+    if (!trackRef.current || !carouselRef.current) return;
+
+    const containerWidth = carouselRef.current.clientWidth;
+    const cardWidth = containerWidth / numVisible;
+    // const totalWidth = cardWidth * totalExtendedSlides;
+    const resetThreshold = cardWidth * (totalSlides * 2);
+
+    // Move backwards by one card width
+    let newPosition = currentPositionRef.current - cardWidth;
+
+    // Check if we're going before the middle section
+    if (newPosition < cardWidth * totalSlides) {
+      // Jump to the end of the extended array for seamless loop
+      newPosition = resetThreshold - cardWidth;
+
+      // Apply immediate reset without transition
+      trackRef.current.style.transition = "none";
+      trackRef.current.style.transform = `translateX(-${newPosition}px)`;
+
+      // Force reflow
+      trackRef.current.offsetHeight;
+
+      // Update start time to maintain smooth animation
+      if (startTimeRef.current) {
+        const currentTime = performance.now();
+        const elapsed = newPosition / 100; // speed is 100px/sec
+        startTimeRef.current = currentTime - elapsed * 1000;
+      }
+    } else {
+      // Apply transform with smooth transition
+      trackRef.current.style.transition = "transform 0.5s ease-in-out";
+      trackRef.current.style.transform = `translateX(-${newPosition}px)`;
     }
-    return visibleImages;
+
+    // Update the position ref
+    currentPositionRef.current = newPosition;
+
+    // Remove transition after animation completes
+    setTimeout(() => {
+      if (trackRef.current) {
+        trackRef.current.style.transition = "none";
+      }
+    }, 500);
   };
 
-  // Determine if buttons should be disabled
-  const isPrevDisabled = featuredIndex === 0;
-  const isNextDisabled =
-    window.innerWidth <= 767
-      ? featuredIndex === carouselImages.length - 1
-      : featuredIndex === carouselImages.length - 3;
+  const handleNext = () => {
+    if (!trackRef.current || !carouselRef.current) return;
+
+    const containerWidth = carouselRef.current.clientWidth;
+    const cardWidth = containerWidth / numVisible;
+    // const totalWidth = cardWidth * totalExtendedSlides;
+    const resetThreshold = cardWidth * (totalSlides * 2);
+
+    // Move forwards by one card width
+    let newPosition = currentPositionRef.current + cardWidth;
+
+    // Check if we need to reset for seamless loop
+    if (newPosition >= resetThreshold) {
+      // Reset to beginning of middle section
+      newPosition = cardWidth * totalSlides;
+
+      // Apply immediate reset without transition
+      trackRef.current.style.transition = "none";
+      trackRef.current.style.transform = `translateX(-${newPosition}px)`;
+
+      // Force reflow
+      trackRef.current.offsetHeight;
+
+      // Update start time to maintain smooth animation
+      if (startTimeRef.current) {
+        const currentTime = performance.now();
+        const elapsed = newPosition / 100; // speed is 100px/sec
+        startTimeRef.current = currentTime - elapsed * 1000;
+      }
+    } else {
+      // Apply transform with smooth transition
+      trackRef.current.style.transition = "transform 0.5s ease-in-out";
+      trackRef.current.style.transform = `translateX(-${newPosition}px)`;
+    }
+
+    // Update the position ref
+    currentPositionRef.current = newPosition;
+
+    // Remove transition after animation completes
+    setTimeout(() => {
+      if (trackRef.current) {
+        trackRef.current.style.transition = "none";
+      }
+    }, 500);
+  };
 
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/contact"); // replace with your contact page route
+    navigate("/contact");
   };
 
   return (
@@ -157,36 +336,42 @@ const Home = () => {
                 <Button
                   variant="primary"
                   className="hero-button d-flex align-items-center"
+                  onClick={() => navigate("/computer-hardware")}
                 >
                   <FaDesktop className="me-2" /> Computer Hardware
                 </Button>
                 <Button
                   variant="primary"
                   className="hero-button d-flex align-items-center"
+                  onClick={() => navigate("/it-services")}
                 >
                   <FaServer className="me-2" /> Information Technology Services
                 </Button>
                 <Button
                   variant="primary"
                   className="hero-button d-flex align-items-center"
+                  onClick={() => navigate("/office-products")}
                 >
                   <FaBriefcase className="me-2" /> Office Products & Supplies
                 </Button>
                 <Button
                   variant="primary"
                   className="hero-button d-flex align-items-center"
+                  onClick={() => navigate("/industrial-products")}
                 >
                   <FaIndustry className="me-2" /> Industrial Products & Supplies
                 </Button>
                 <Button
                   variant="primary"
                   className="hero-button d-flex align-items-center"
+                  onClick={() => navigate("/furniture")}
                 >
                   <FaChair className="me-2" /> Furniture & Furnishings
                 </Button>
                 <Button
                   variant="primary"
                   className="hero-button d-flex align-items-center"
+                  onClick={() => navigate("/medical-equipment")}
                 >
                   <FaStethoscope className="me-2" /> Medical Equipment
                 </Button>
@@ -199,7 +384,9 @@ const Home = () => {
         <Container fluid>
           <Row className="justify-content-center text-center p-lg-2 p-sm-0">
             <Col md={12}>
-              <h2 className="core-heading">ICloud Technologies Core Competencies</h2>
+              <h2 className="core-heading">
+                ICloud Technologies Core Competencies
+              </h2>
               <p className="core-description">
                 Real-time engagement in a wide range of products and
                 professional IT services.
@@ -251,11 +438,11 @@ const Home = () => {
           <Row className="justify-content-center text-center mt-4">
             <Col md={10}>
               <p className="core-footer-text">
-                As a trusted supplier, icloud provides high-quality
-                products and services to our customers either individuals or the
-                business. We are committed to providing reliable and
-                cost-effective options tailored to your unique needs, ensuring
-                satisfaction and great value for your money.
+                As a trusted supplier, icloud provides high-quality products and
+                services to our customers either individuals or the business. We
+                are committed to providing reliable and cost-effective options
+                tailored to your unique needs, ensuring satisfaction and great
+                value for your money.
               </p>
             </Col>
           </Row>
@@ -302,40 +489,44 @@ const Home = () => {
       >
         <Container fluid>
           <h2 className="featured-heading text-center">Featured Products</h2>
-          <div className="carousel-wrapper position-relative">
-            <Row className="justify-content-center">
-              {getVisibleImages().map((image, idx) => (
-                <Col
-                  xs={12}
-                  sm={4}
-                  key={idx}
-                  className="d-flex justify-content-center"
-                >
-                  <Card className="featured-card p-2">
+          <div
+            className="carousel-wrapper position-relative"
+            ref={carouselRef}
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
+            <div className="carousel-container">
+              <div className="carousel-track" ref={trackRef}>
+                {extendedImages.map((image, idx) => (
+                  <Card
+                    key={idx}
+                    className="featured-card p-2"
+                    style={{ flex: `0 0 ${100 / numVisible}%` }}
+                  >
                     <Card.Img
                       variant="top"
                       src={image}
-                      alt={`Featured Product ${featuredIndex + idx + 1}`}
+                      alt={`Featured Product ${(idx % totalSlides) + 1}`}
                       className="featured-img"
                     />
                   </Card>
-                </Col>
-              ))}
-            </Row>
+                ))}
+              </div>
+            </div>
             <div className="carousel-controls">
               <Button
-                className="carousel-control-btn"
+                className="carousel-control-btn prev-btn"
                 onClick={handlePrev}
-                disabled={isPrevDisabled}
               >
-                <FaChevronLeft size={16} />
+                <FaChevronLeft className="me-1" />
+                Previous
               </Button>
               <Button
-                className="carousel-control-btn"
+                className="carousel-control-btn next-btn"
                 onClick={handleNext}
-                disabled={isNextDisabled}
               >
-                <FaChevronRight size={16} />
+                Next
+                <FaChevronRight className="ms-1" />
               </Button>
             </div>
           </div>

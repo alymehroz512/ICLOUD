@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
+}
+
+/* -----------------------------
+   Hero Section
+----------------------------- */
+.it-hero {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.it-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(2, 157, 123, 0.5);
+  z-index: 1;
+}
+
+.it-hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.it-hero-heading {
+  font-size: 3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* -----------------------------
+   Second Section
+----------------------------- */
+.it-second-section {
+  background-color: #ffffff;
+  padding: 100px 0;
+}
+
+.it-second-heading {
+  color: #000000;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.6;
+  text-transform: none;
+}
+
+/* ERP, CRM, AI, Cloud Styles */
+.erp-title {
+  font-size: 2.5rem;
+  color: #000;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.erp-description {
+  color: #6b6b6b;
+  font-size: 18px;
+  line-height: 1.8;
+  text-align: justify;
+}
+
+.erp-image {
+  max-width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* -----------------------------
+   Third Section (AI & Cloud)
+----------------------------- */
+.it-third-section {
+  background-color: #f8f9fa;
+  padding: 100px 0;
+}
+
+/* -----------------------------
+   Responsive Design
+----------------------------- */
+@media (max-width: 992px) {
+  .erp-title {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .erp-description {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .it-hero-heading {
+    font-size: 1.8rem;
+  }
+
+  .it-second-heading {
+    font-size: 1.5rem;
+  }
+
+  .erp-title {
+    font-size: 1.8rem;
+  }
+
+  .erp-description {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .it-hero-heading {
+    font-size: 1.5rem;
+  }
+
+  .it-second-heading {
+    font-size: 1.2rem;
+  }
+
+  .erp-title {
+    font-size: 1.5rem;
+  }
+
+  .erp-description {
+    font-size: 0.9rem;
+  }
+}
