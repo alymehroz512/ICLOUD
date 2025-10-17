@@ -338,7 +338,7 @@ const Home = () => {
                   className="hero-button d-flex align-items-center"
                   onClick={() => navigate("/computer-hardware")}
                 >
-                  <FaDesktop className="me-2" /> Computer Hardware
+                  <FaDesktop className="me-2" /> Computer Hardware Solutions
                 </Button>
                 <Button
                   variant="primary"
@@ -373,7 +373,7 @@ const Home = () => {
                   className="hero-button d-flex align-items-center"
                   onClick={() => navigate("/medical-equipment")}
                 >
-                  <FaStethoscope className="me-2" /> Medical Equipment
+                  <FaStethoscope className="me-2" /> Medical Equipment & Supplies
                 </Button>
               </div>
             </Col>

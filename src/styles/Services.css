@@ -65,6 +65,8 @@
   box-shadow: 0 4px 10px rgba(2, 157, 123, 0.1);
   position: relative;
   overflow: visible;
+  display: flex;
+  flex-direction: column;
 }
 
 .service-card:hover {
@@ -73,7 +75,7 @@
   border-color: #029d7b;
 }
 
-/* Icon Wrapper and Diamond Shape */
+/* Icon Wrapper and Square Shape */
 .icon-wrapper {
   position: relative;
   display: flex;
@@ -83,11 +85,10 @@
   margin-bottom: 15px;
 }
 
-.icon-diamond {
+.icon-square {
   width: 70px;
   height: 70px;
   background-color: rgba(2, 157, 123, 0.1);
-  transform: rotate(45deg);
   position: relative;
   z-index: 1;
 }
@@ -101,7 +102,7 @@
   color: #029d7b;
 }
 
-.service-card:hover .icon-diamond {
+.service-card:hover .icon-square {
   background-color: rgba(2, 157, 123, 0.2);
 }
 
@@ -117,6 +118,35 @@
   font-size: 16px;
   color: #6b6b6b;
   line-height: 1.7;
+  flex-grow: 1;
+}
+
+/* Button Styling */
+.service-card-button {
+  align-self: flex-start;
+  background-color: #029d7b;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 8px 16px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  border-radius: 0;
+}
+
+.service-card-button:hover {
+  background-color: #027f60;
+  color: #ffffff;
+}
+
+.service-card-button .button-arrow {
+  transition: transform 0.3s ease;
+}
+
+.service-card-button:hover .button-arrow {
+  transform: translateX(5px);
 }
 
 /* Responsive Adjustments */
@@ -129,13 +159,18 @@
     font-size: 1.8rem;
   }
 
-  .icon-diamond {
+  .icon-square {
     width: 60px;
     height: 60px;
   }
 
   .icon-overlap {
     left: 30px;
+  }
+
+  .service-card-button {
+    font-size: 14px;
+    padding: 6px 12px;
   }
 }
 
@@ -148,12 +183,17 @@
     font-size: 1.5rem;
   }
 
-  .icon-diamond {
+  .icon-square {
     width: 55px;
     height: 55px;
   }
 
   .icon-overlap {
     left: 27px;
+  }
+
+  .service-card-button {
+    font-size: 12px;
+    padding: 5px 10px;
   }
 }
