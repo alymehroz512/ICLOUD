@@ -47,52 +47,52 @@ const OfficeProducts = () => {
 
   // --- Office Stationery Products ---
   const officeStationeryProducts = [
-    { id: 1, image: Stationary1, name: "Notebook" },
-    { id: 2, image: Stationary2, name: "Pen Set" },
-    { id: 3, image: Stationary3, name: "Sticky Notes" },
-    { id: 4, image: Stationary4, name: "Paper Clips" },
-    { id: 5, image: Stationary5, name: "Highlighter" },
-    { id: 6, image: Stationary6, name: "Stapler" },
+    { id: 1, image: Stationary1, name: "Pens" },
+    { id: 2, image: Stationary2, name: "Fax Machine" },
+    { id: 3, image: Stationary3, name: "Printer" },
+    { id: 4, image: Stationary4, name: "Office Mail Tray" },
+    { id: 5, image: Stationary5, name: "3D Printing Fliaments" },
+    { id: 6, image: Stationary6, name: "Pencils" },
   ];
 
   // --- Office Essentials Products ---
   const officeEssentialsProducts = [
-    { id: 1, image: OE1, name: "Desk Organizer" },
-    { id: 2, image: OE2, name: "Mouse Pad" },
-    { id: 3, image: OE3, name: "Cable Organizer" },
-    { id: 4, image: OE4, name: "Desk Lamp" },
-    { id: 5, image: OE5, name: "Whiteboard" },
-    { id: 6, image: OE6, name: "Nameplate" },
+    { id: 1, image: OE1, name: "File Cabines" },
+    { id: 2, image: OE2, name: "Desks" },
+    { id: 3, image: OE3, name: "Office Chairs" },
+    { id: 4, image: OE4, name: "Book Shelves" },
+    { id: 5, image: OE5, name: "Meeting Tables" },
+    { id: 6, image: OE6, name: "Scanners" },
   ];
 
   // --- Storage Solutions Products ---
   const storageSolutionsProducts = [
-    { id: 1, image: SS1, name: "File Cabinet" },
-    { id: 2, image: SS2, name: "Storage Box" },
-    { id: 3, image: SS3, name: "Shelf Unit" },
-    { id: 4, image: SS4, name: "Drawer Organizer" },
-    { id: 5, image: SS5, name: "File Holder" },
-    { id: 6, image: SS6, name: "Bookend" },
+    { id: 1, image: SS1, name: "Cardboard Storage Boxes" },
+    { id: 2, image: SS2, name: "Desktop Drawer" },
+    { id: 3, image: SS3, name: "Wall-Mounted Shelves" },
+    { id: 4, image: SS4, name: "Plastic Storage Bins" },
+    { id: 5, image: SS5, name: "Pen Holder" },
+    { id: 6, image: SS6, name: "Rolling Storage Carts" },
   ];
 
   // --- Office Equipment Products ---
   const officeEquipmentProducts = [
-    { id: 1, image: EQ1, name: "Printer" },
-    { id: 2, image: EQ2, name: "Scanner" },
-    { id: 3, image: EQ3, name: "Shredder" },
-    { id: 4, image: EQ4, name: "Projector" },
-    { id: 5, image: EQ5, name: "Laminator" },
-    { id: 6, image: EQ6, name: "Binding Machine" },
+    { id: 1, image: EQ1, name: "Surveillance Cameras" },
+    { id: 2, image: EQ2, name: "Photocopiers" },
+    { id: 3, image: EQ3, name: "Projectors" },
+    { id: 4, image: EQ4, name: "Whiteboards" },
+    { id: 5, image: EQ5, name: "Anti Radiation Screen" },
+    { id: 6, image: EQ6, name: "Wireless Presentations Systems" },
   ];
 
   // --- Cleaning & Maintenance Products ---
   const cleaningMaintenanceProducts = [
-    { id: 1, image: CM1, name: "Cleaning Spray" },
-    { id: 2, image: CM2, name: "Microfiber Cloth" },
-    { id: 3, image: CM3, name: "Trash Bin" },
-    { id: 4, image: CM4, name: "Vacuum Cleaner" },
-    { id: 5, image: CM5, name: "Air Freshener" },
-    { id: 6, image: CM6, name: "Mop" },
+    { id: 1, image: CM1, name: "Head Cleaners" },
+    { id: 2, image: CM2, name: "Disk Drive Cleaners" },
+    { id: 3, image: CM3, name: "Monitor Cleaners" },
+    { id: 4, image: CM4, name: "Toner Wipes" },
+    { id: 5, image: CM5, name: "Mini Vaccums" },
+    { id: 6, image: CM6, name: "Toner Cartridges" },
   ];
 
   // --- Render Categories ---

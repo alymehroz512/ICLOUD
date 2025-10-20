@@ -54,62 +54,62 @@ const IndustrialProducts = () => {
 
   // --- Energy Products ---
   const energyProducts = [
-    { id: 1, image: energy1, name: "Solar Panel" },
-    { id: 2, image: energy2, name: "Wind Turbine" },
-    { id: 3, image: energy3, name: "Battery Pack" },
+    { id: 1, image: energy1, name: "Transformers" },
+    { id: 2, image: energy2, name: "Lithium-Ion Battery" },
+    { id: 3, image: energy3, name: "Portable Light House" },
     { id: 4, image: energy4, name: "Inverter" },
-    { id: 5, image: energy5, name: "Generator" },
-    { id: 6, image: energy6, name: "Power Module" },
+    { id: 5, image: energy5, name: "Solar Panel" },
+    { id: 6, image: energy6, name: "EV Charging Cable" },
   ];
 
   // --- Aluminum Products ---
   const aluminumProducts = [
-    { id: 1, image: AL1, name: "Aluminum Sheet" },
-    { id: 2, image: AL2, name: "Aluminum Rod" },
-    { id: 3, image: AL3, name: "Aluminum Pipe" },
-    { id: 4, image: AL4, name: "Aluminum Profile" },
-    { id: 5, image: AL5, name: "Aluminum Foil" },
-    { id: 6, image: AL6, name: "Aluminum Plate" },
+    { id: 1, image: AL1, name: "Sheets & Plates" },
+    { id: 2, image: AL2, name: "Profiles & Extrusions" },
+    { id: 3, image: AL3, name: "Foils" },
+    { id: 4, image: AL4, name: "Bars & Rods" },
+    { id: 5, image: AL5, name: "Tubes & Pipes" },
+    { id: 6, image: AL6, name: "Construction Materails" },
   ];
 
   // --- Steel Products ---
   const steelProducts = [
-    { id: 1, image: ST1, name: "Steel Beam" },
-    { id: 2, image: ST2, name: "Steel Pipe" },
-    { id: 3, image: ST3, name: "Steel Plate" },
-    { id: 4, image: ST4, name: "Steel Rod" },
-    { id: 5, image: ST5, name: "Steel Coil" },
-    { id: 6, image: ST6, name: "Steel Wire" },
+    { id: 1, image: ST1, name: "Bars & Rods" },
+    { id: 2, image: ST2, name: "Pipes" },
+    { id: 3, image: ST3, name: "Roll" },
+    { id: 4, image: ST4, name: "vanadium" },
+    { id: 5, image: ST5, name: "Steel Screws" },
+    { id: 6, image: ST6, name: "Steel Angle" },
   ];
 
   // --- Plastic Resins Products ---
   const plasticResinsProducts = [
     { id: 1, image: PL1, name: "Polyethylene" },
     { id: 2, image: PL2, name: "Polypropylene" },
-    { id: 3, image: PL3, name: "PVC Resin" },
-    { id: 4, image: PL4, name: "ABS Resin" },
-    { id: 5, image: PL5, name: "Polycarbonate" },
-    { id: 6, image: PL6, name: "Nylon Resin" },
+    { id: 3, image: PL3, name: "Thermoplastice Elastomers" },
+    { id: 4, image: PL4, name: "Polystyrene" },
+    { id: 5, image: PL5, name: "Polyoxymethylene" },
+    { id: 6, image: PL6, name: "Acrylic resins" },
   ];
 
   // --- Rubber Products ---
   const rubberProducts = [
     { id: 1, image: RU1, name: "Rubber Sheet" },
-    { id: 2, image: RU2, name: "Rubber Hose" },
-    { id: 3, image: RU3, name: "Rubber Seal" },
-    { id: 4, image: RU4, name: "Rubber Belt" },
-    { id: 5, image: RU5, name: "Rubber Mat" },
-    { id: 6, image: RU6, name: "Rubber Gasket" },
+    { id: 2, image: RU2, name: "Tubes" },
+    { id: 3, image: RU3, name: "Mats" },
+    { id: 4, image: RU4, name: "Industial" },
+    { id: 5, image: RU5, name: "Rolls" },
+    { id: 6, image: RU6, name: "Natural" },
   ];
 
   // --- Chemicals Products ---
   const chemicalsProducts = [
-    { id: 1, image: CHE1, name: "Industrial Solvent" },
-    { id: 2, image: CHE2, name: "Adhesive" },
-    { id: 3, image: CHE3, name: "Lubricant" },
-    { id: 4, image: CHE4, name: "Cleaning Agent" },
-    { id: 5, image: CHE5, name: "Paint Thinner" },
-    { id: 6, image: CHE6, name: "Coating Solution" },
+    { id: 1, image: CHE1, name: "Acids" },
+    { id: 2, image: CHE2, name: "Solvents" },
+    { id: 3, image: CHE3, name: "Salts" },
+    { id: 4, image: CHE4, name: "Sodium Hydroxide" },
+    { id: 5, image: CHE5, name: "Petrochemicals" },
+    { id: 6, image: CHE6, name: "Flocculants" },
   ];
 
   // --- Render Categories ---

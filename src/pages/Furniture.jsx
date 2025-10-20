@@ -54,62 +54,62 @@ const Furniture = () => {
 
   // --- Office Furniture Products ---
   const officeFurnitureProducts = [
-    { id: 1, image: OF1, name: "Office Chair" },
-    { id: 2, image: OF2, name: "Executive Desk" },
-    { id: 3, image: OF3, name: "Bookshelf" },
-    { id: 4, image: OF4, name: "Conference Table" },
-    { id: 5, image: OF5, name: "File Cabinet" },
-    { id: 6, image: OF6, name: "Workstation" },
+    { id: 1, image: OF1, name: "Chair" },
+    { id: 2, image: OF2, name: "Executive Chair" },
+    { id: 3, image: OF3, name: "Table" },
+    { id: 4, image: OF4, name: "Computer Table" },
+    { id: 5, image: OF5, name: "Cabinet" },
+    { id: 6, image: OF6, name: "Flooring Mat" },
   ];
 
   // --- Home Office Furniture Products ---
   const homeOfficeFurnitureProducts = [
-    { id: 1, image: HF1, name: "Home Desk" },
-    { id: 2, image: HF2, name: "Ergonomic Chair" },
-    { id: 3, image: HF3, name: "Monitor Stand" },
-    { id: 4, image: HF4, name: "Desk Organizer" },
-    { id: 5, image: HF5, name: "Bookshelf" },
-    { id: 6, image: HF6, name: "Office Lamp" },
+    { id: 1, image: HF1, name: "Executive Desk" },
+    { id: 2, image: HF2, name: "Cabin" },
+    { id: 3, image: HF3, name: "L-Shaped & Corner Desks" },
+    { id: 4, image: HF4, name: "Writing Desks" },
+    { id: 5, image: HF5, name: "Task Chairs" },
+    { id: 6, image: HF6, name: "Chairs & Tables" },
   ];
 
   // --- Dining Room Furniture Products ---
   const diningRoomFurnitureProducts = [
     { id: 1, image: DRF1, name: "Dining Table" },
-    { id: 2, image: DRF2, name: "Dining Chair" },
-    { id: 3, image: DRF3, name: "Buffet Table" },
-    { id: 4, image: DRF4, name: "Bar Stool" },
-    { id: 5, image: DRF5, name: "China Cabinet" },
-    { id: 6, image: DRF6, name: "Bench" },
+    { id: 2, image: DRF2, name: "Dining Chair & Benches" },
+    { id: 3, image: DRF3, name: "Bar & Counter Stool" },
+    { id: 4, image: DRF4, name: "Buffets & SideBoards" },
+    { id: 5, image: DRF5, name: "High-Top Dinning Furniture" },
+    { id: 6, image: DRF6, name: "Extendable Tables" },
   ];
 
   // --- Living Room Furniture Products ---
   const livingRoomFurnitureProducts = [
-    { id: 1, image: LRF1, name: "Sofa" },
-    { id: 2, image: LRF2, name: "Coffee Table" },
-    { id: 3, image: LRF3, name: "Armchair" },
-    { id: 4, image: LRF4, name: "TV Stand" },
-    { id: 5, image: LRF5, name: "Bookshelf" },
-    { id: 6, image: LRF6, name: "Ottoman" },
+    { id: 1, image: LRF1, name: "Sofa & Sectionals" },
+    { id: 2, image: LRF2, name: "Loveseats & Chaise Lounges" },
+    { id: 3, image: LRF3, name: "Recliners & Accent Chairs" },
+    { id: 4, image: LRF4, name: "Coffee Tables" },
+    { id: 5, image: LRF5, name: "Side & End tables" },
+    { id: 6, image: LRF6, name: "TV & Media Consoles Stands" },
   ];
 
   // --- Bedroom Furniture Products ---
   const bedroomFurnitureProducts = [
-    { id: 1, image: BRF1, name: "Bed Frame" },
+    { id: 1, image: BRF1, name: "Beds" },
     { id: 2, image: BRF2, name: "Nightstand" },
-    { id: 3, image: BRF3, name: "Dresser" },
-    { id: 4, image: BRF4, name: "Wardrobe" },
-    { id: 5, image: BRF5, name: "Mirror" },
-    { id: 6, image: BRF6, name: "Chest" },
+    { id: 3, image: BRF3, name: "Bedsides Tables" },
+    { id: 4, image: BRF4, name: "Dressers" },
+    { id: 5, image: BRF5, name: "Vanity Tables" },
+    { id: 6, image: BRF6, name: "Ottomans" },
   ];
 
   // --- Outdoor Furniture Products ---
   const outdoorFurnitureProducts = [
-    { id: 1, image: OTF1, name: "Patio Table" },
-    { id: 2, image: OTF2, name: "Garden Chair" },
-    { id: 3, image: OTF3, name: "Sun Lounger" },
-    { id: 4, image: OTF4, name: "Outdoor Sofa" },
-    { id: 5, image: OTF5, name: "Hammock" },
-    { id: 6, image: OTF6, name: "Fire Pit" },
+    { id: 1, image: OTF1, name: "Lounge Chairs" },
+    { id: 2, image: OTF2, name: "Outdoors Sofas & Sectionals" },
+    { id: 3, image: OTF3, name: "Adirondack Chairs" },
+    { id: 4, image: OTF4, name: "Bistro Tables" },
+    { id: 5, image: OTF5, name: "Picnic Tables" },
+    { id: 6, image: OTF6, name: "Folding Chairs & Tables" },
   ];
 
   // --- Render Categories ---

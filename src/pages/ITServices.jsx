@@ -2,10 +2,10 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import "../styles/ITServices.css";
 import ITHero from "../assets/ITHero.jpg"; // adjust path as needed
-import ERP from "../assets/ERP.jpg"; // ERP image path
-import CRM from "../assets/CRM.jpg"; // CRM image path
-import AI from "../assets/AI.jpg"; // AI image path
-import CLOUD from "../assets/CLOUD.jpg"; // Cloud image path
+import ERP from "../assets/ERP.png"; // ERP image path
+import CRM from "../assets/CRM.png"; // CRM image path
+import AI from "../assets/AI.png"; // AI image path
+import CLOUD from "../assets/CLOUD.png"; // Cloud image path
 
 const ITServices = () => {
   return (
