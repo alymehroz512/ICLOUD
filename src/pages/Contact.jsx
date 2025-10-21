@@ -105,9 +105,7 @@ function Contact() {
       icon: <FaMapMarkerAlt className="contact-icon" />,
       text: (
         <>
-          11732 SE 269th Pl
-          <br />
-          Kent, WA 98030-8713 USA
+          32 Jacob Wy Collegeville, PA 19426, USA
         </>
       ),
     },
@@ -158,7 +156,7 @@ function Contact() {
             <Col md={6} className="mb-4 mb-md-0">
               <div className="map-container">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2702.6325489187266!2d-122.18677292491445!3d47.36057150493653!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54905ed0d041889d%3A0x8d735c5cca8488!2s11732%20SE%20269th%20Pl%2C%20Kent%2C%20WA%2098030%2C%20USA!5e0!3m2!1sen!2s!4v1737578988815!5m2!1sen!2s"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3047.752920196315!2d-75.4666391!3d40.19231179999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c6909b084cdbbb%3A0xcd9e8d1773ffe3f9!2s32%20Jacob%20Wy%2C%20Collegeville%2C%20PA%2019426%2C%20USA!5e0!3m2!1sen!2s!4v1761062312491!5m2!1sen!2s"
                   width="100%"
                   height="400"
                   style={{ border: 0 }}
