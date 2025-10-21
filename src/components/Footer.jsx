@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   FaEnvelope,
   FaMapMarkerAlt,
@@ -11,9 +11,18 @@ import {
   FaInstagram,
 } from "react-icons/fa";
 import "../styles/Footer.css";
-import Logo from "../assets/Logo.svg"; // adjust path if needed
+import Logo from "../assets/Logo.svg";
 
 function Footer() {
+  const location = useLocation();
+
+  const handleLinkClick = (e, path) => {
+    if (location.pathname === path) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer className="footer py-5">
       <Container>
@@ -70,10 +79,34 @@ function Footer() {
             <div>
               <h5 className="footer-heading">Quick Links</h5>
               <div className="footer-bottom-links flex-column align-items-start mt-3">
-                <Link to="/" className="footer-bottom-link">Home</Link>
-                <Link to="/about" className="footer-bottom-link">About</Link>
-                <Link to="/services" className="footer-bottom-link">Services</Link>
-                <Link to="/contact" className="footer-bottom-link">Contact</Link>
+                <Link
+                  to="/"
+                  className="footer-bottom-link"
+                  onClick={(e) => handleLinkClick(e, "/")}
+                >
+                  Home
+                </Link>
+                <Link
+                  to="/about"
+                  className="footer-bottom-link"
+                  onClick={(e) => handleLinkClick(e, "/about")}
+                >
+                  About
+                </Link>
+                <Link
+                  to="/services"
+                  className="footer-bottom-link"
+                  onClick={(e) => handleLinkClick(e, "/services")}
+                >
+                  Services
+                </Link>
+                <Link
+                  to="/contact"
+                  className="footer-bottom-link"
+                  onClick={(e) => handleLinkClick(e, "/contact")}
+                >
+                  Contact
+                </Link>
               </div>
             </div>
           </Col>
@@ -86,7 +119,11 @@ function Footer() {
         <Row className="justify-content-between align-items-center mt-3">
           <Col md="6" className="text-md-start text-center mb-3 mb-md-0">
             <p className="footer-copy">
-              © {new Date().getFullYear()} <strong style={{color: '#029d7b' , textTransform: 'uppercase'}}>icloud technologies</strong> All rights reserved
+              © {new Date().getFullYear()}{' '}
+              <strong style={{ color: '#029d7b', textTransform: 'uppercase' }}>
+                icloud technologies
+              </strong>{' '}
+              All rights reserved
             </p>
           </Col>
           <Col md="6" className="text-md-end text-center">
