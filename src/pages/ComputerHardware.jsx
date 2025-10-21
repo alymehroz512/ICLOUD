@@ -325,7 +325,7 @@ const ComputerHardware = () => {
       </div>
       <Card.Body className="d-flex flex-column justify-content-between">
         <div className="text-start mb-2">
-          <Card.Title className="fw-bold storage-title">
+          <Card.Title className="storage-title">
             {product.name}
           </Card.Title>
           <p className="text-success fw-semibold storage-model">
