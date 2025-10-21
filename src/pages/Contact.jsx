@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Row,
@@ -15,21 +15,89 @@ import {
   FaMapMarkerAlt,
   FaPhoneAlt,
   FaEnvelope,
+  FaCheckCircle,
+  FaExclamationCircle,
 } from "react-icons/fa";
-import ContactHero from "../assets/Contact.jpg"; // adjust path if needed
+import emailjs from "@emailjs/browser";
+import ContactHero from "../assets/Contact.jpg";
 
 function Contact() {
   const [isSending, setIsSending] = useState(false);
+  const [notification, setNotification] = useState({ message: "", type: "" });
+
+  useEffect(() => {
+    emailjs.init("Dx3xeIMyle1WkTixU");
+  }, []);
+
+  useEffect(() => {
+    if (notification.message) {
+      const timer = setTimeout(() => setNotification({ message: "", type: "" }), 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [notification]);
+
+  const validateForm = (form) => {
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const phone = form.phone.value.trim();
+    const message = form.message.value.trim();
+
+    if (!name || !email || !phone || !message) {
+      setNotification({
+        message: "Please fill in all required fields before submitting.",
+        type: "error",
+      });
+      return false;
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setNotification({
+        message: "Please enter a valid email address.",
+        type: "error",
+      });
+      return false;
+    }
+
+    return true;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const form = e.target;
+
+    if (!validateForm(form)) {
+      return;
+    }
+
     setIsSending(true);
 
-    // Simulate sending delay
-    setTimeout(() => {
-      setIsSending(false);
-      alert("Message sent successfully!");
-    }, 2000);
+    emailjs
+      .sendForm(
+        "service_o0hu38r",
+        "template_gtw2vhe",
+        form
+      )
+      .then(
+        (result) => {
+          console.log("SUCCESS:", result.text);
+          setIsSending(false);
+          setNotification({
+            message: "Your message has been sent successfully! We will get back to you shortly.",
+            type: "success",
+          });
+          form.reset();
+        },
+        (error) => {
+          console.error("FAILED:", error);
+          setIsSending(false);
+          setNotification({
+            message: "Oops! Something went wrong. Please check your details and resend.",
+            type: "error",
+          });
+        }
+      );
   };
 
   const contactInfo = [
@@ -49,12 +117,24 @@ function Contact() {
     },
     {
       icon: <FaEnvelope className="contact-icon" />,
-      text: "info@icloudtechnologies.com",
+      text: "Info@icloudtechnologies.us",
     },
   ];
 
   return (
     <>
+      {/* Notification Toast */}
+      {notification.message && (
+        <div className={`custom-toast square ${notification.type} slide-in`}>
+          {notification.type === "success" ? (
+            <FaCheckCircle className="me-2 toast-icon success-icon" />
+          ) : (
+            <FaExclamationCircle className="me-2 toast-icon error-icon" />
+          )}
+          <span className="toast-message">{notification.message}</span>
+        </div>
+      )}
+
       {/* Hero Section */}
       <section
         className="contact-hero d-flex align-items-center justify-content-center text-center"
@@ -75,7 +155,6 @@ function Contact() {
       <section className="contact-section py-5">
         <Container>
           <Row className="align-items-center">
-            {/* Left Column - Google Map */}
             <Col md={6} className="mb-4 mb-md-0">
               <div className="map-container">
                 <iframe
@@ -90,106 +169,67 @@ function Contact() {
               </div>
             </Col>
 
-            {/* Right Column - Contact Form */}
             <Col md={6}>
               <div className="contact-form">
                 <Form onSubmit={handleSubmit}>
-                  {/* First Row - Name, Email, Phone */}
+                  <input type="hidden" name="time" value={new Date().toLocaleString()} />
+                  <input type="hidden" name="year" value={new Date().getFullYear()} />
+
                   <Row className="mb-3">
                     <Col md={4}>
-                      <FloatingLabel
-                        controlId="floatingName"
-                        label="Your Name"
-                        className="mb-3 mb-md-0"
-                      >
-                        <Form.Control
-                          type="text"
-                          placeholder="Your Name"
-                          required
-                        />
+                      <FloatingLabel controlId="floatingName" label="Your Name" className="mb-3 mb-md-0">
+                        <Form.Control type="text" placeholder="Your Name" name="name" />
                       </FloatingLabel>
                     </Col>
                     <Col md={4}>
-                      <FloatingLabel
-                        controlId="floatingEmail"
-                        label="Email Address"
-                        className="mb-3 mb-md-0"
-                      >
-                        <Form.Control
-                          type="email"
-                          placeholder="Email"
-                          required
-                        />
+                      <FloatingLabel controlId="floatingEmail" label="Email Address" className="mb-3 mb-md-0">
+                        <Form.Control type="email" placeholder="Email" name="email" />
                       </FloatingLabel>
                     </Col>
                     <Col md={4}>
-                      <FloatingLabel
-                        controlId="floatingPhone"
-                        label="Phone Number"
-                        className="mb-3 mb-md-0"
-                      >
-                        <Form.Control
-                          type="tel"
-                          placeholder="Phone Number"
-                          required
-                        />
+                      <FloatingLabel controlId="floatingPhone" label="Phone Number" className="mb-3 mb-md-0">
+                        <Form.Control type="tel" placeholder="Phone Number" name="phone" />
                       </FloatingLabel>
                     </Col>
                   </Row>
 
-                  {/* Second Row - Product Name, Model No. */}
                   <Row className="mb-3">
                     <Col md={6}>
-                      <FloatingLabel
-                        controlId="floatingProduct"
-                        label="Product Name"
-                        className="mb-3 mb-md-0"
-                      >
-                        <Form.Control type="text" placeholder="Product Name" />
+                      <FloatingLabel controlId="floatingProduct" label="Product Name" className="mb-3 mb-md-0">
+                        <Form.Control type="text" placeholder="Product Name" name="product" />
                       </FloatingLabel>
                     </Col>
                     <Col md={6}>
-                      <FloatingLabel
-                        controlId="floatingModel"
-                        label="Model No."
-                        className="mb-3 mb-md-0"
-                      >
-                        <Form.Control type="text" placeholder="Model No." />
+                      <FloatingLabel controlId="floatingModel" label="Model No." className="mb-3 mb-md-0">
+                        <Form.Control type="text" placeholder="Model No." name="model" />
                       </FloatingLabel>
                     </Col>
                   </Row>
 
-                  {/* Message Field */}
-                  <FloatingLabel
-                    controlId="floatingMessage"
-                    label="Your Message"
-                    className="mb-4"
-                  >
+                  <FloatingLabel controlId="floatingMessage" label="Your Message" className="mb-4">
                     <Form.Control
                       as="textarea"
                       placeholder="Your Message"
                       style={{ height: "200px", resize: "none" }}
-                      required
+                      name="message"
                     />
                   </FloatingLabel>
 
-                  {/* Send Button */}
                   <Button
-                    className="send-btn small-btn"
+                    className="send-btn small-btn d-flex align-items-center justify-content-center"
                     type="submit"
                     disabled={isSending}
                   >
                     {isSending ? (
-                      <>
-                        <Spinner animation="border" size="sm" className="me-2" />
-                        Sending...
-                      </>
+                      <Spinner
+                        animation="border"
+                        size="sm"
+                        className="me-2 spinner-send-btn"
+                      />
                     ) : (
-                      <>
-                        <FaPaperPlane className="me-2" />
-                        Send
-                      </>
+                      <FaPaperPlane className="me-2" />
                     )}
+                    {isSending ? "Sending..." : "Send"}
                   </Button>
                 </Form>
               </div>
@@ -198,12 +238,11 @@ function Contact() {
         </Container>
       </section>
 
-      {/* Contact Info Cards Section */}
       <section className="contact-info-section py-5">
         <Container>
           <Row className="justify-content-center text-center g-3">
             {contactInfo.map((item, index) => (
-              <Col key={index} md={4}>
+              <Col key={index} xs={12} md={12} lg={4}>
                 <Card className="contact-info-card d-flex flex-row align-items-center p-3">
                   <div className="contact-icon-box me-3">{item.icon}</div>
                   <div className="contact-info-text-box text-start">

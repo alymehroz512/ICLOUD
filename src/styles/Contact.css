@@ -82,6 +82,14 @@
   background-color: #027f63;
 }
 
+/* Spinner same as Send button */
+.spinner-send-btn {
+  border-top-color: #029d7b;
+  border-right-color: #029d7b;
+  border-bottom-color: #029d7b;
+  border-left-color: rgba(2, 157, 123, 0.3);
+}
+
 /* Map */
 .map-container iframe {
   width: 100%;
@@ -98,7 +106,7 @@
 
 .contact-info-card {
   border: 1px solid #029d7b;
-  border-radius: 0; /* No rounded corners */
+  border-radius: 0;
   box-shadow: 0 0 10px rgba(2, 157, 123, 0.1);
   transition: all 0.3s ease;
   cursor: pointer;
@@ -106,6 +114,7 @@
   display: flex;
   align-items: center;
   background-color: #fff;
+  width: 100%;
 }
 
 .contact-info-card:hover {
@@ -138,14 +147,15 @@
   line-height: 1.4;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* Responsive for Mobile (below 768px) */
+@media (max-width: 767px) {
   .contact-hero-heading {
     font-size: 1.8rem;
   }
   .contact-info-card {
     height: 100px;
     padding: 1rem;
+    width: 100%;
   }
   .contact-icon-box {
     width: 50px;
@@ -156,5 +166,75 @@
   }
   .contact-info-text {
     font-size: 0.9rem;
+  }
+}
+
+/* Responsive for Tablet (768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .contact-info-card {
+    height: 100px;
+    padding: 1rem;
+    width: 100%;
+  }
+  .contact-icon-box {
+    width: 50px;
+    height: 50px;
+  }
+  .contact-icon {
+    font-size: 1.4rem;
+  }
+  .contact-info-text {
+    font-size: 0.9rem;
+  }
+}
+
+/* Modern Notifications */
+.custom-toast.square {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 620px;
+  padding: 15px 20px;
+  border-radius: 0%;
+  color: black;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-left: 6px solid;
+  transform: translateX(120%);
+  animation: slideIn 0.4s forwards;
+}
+
+.custom-toast.success {
+  border-left-color: #28a745;
+}
+
+.custom-toast.error {
+  border-left-color: #dc3545;
+}
+
+.toast-icon {
+  font-size: 1.4rem;
+}
+
+.success-icon {
+  color: #28a745;
+}
+
+.error-icon {
+  color: #dc3545;
+}
+
+.toast-message {
+  margin-left: 10px;
+  font-size: 1rem;
+}
+
+@keyframes slideIn {
+  to {
+    transform: translateX(0);
   }
 }
