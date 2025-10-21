@@ -26,7 +26,7 @@ function Contact() {
   const [notification, setNotification] = useState({ message: "", type: "" });
 
   useEffect(() => {
-    emailjs.init("Dx3xeIMyle1WkTixU");
+    emailjs.init("Dx3xeIMyle1WkTixU"); // Your EmailJS user ID
   }, []);
 
   useEffect(() => {
@@ -50,7 +50,6 @@ function Contact() {
       return false;
     }
 
-    // Basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setNotification({
@@ -63,51 +62,44 @@ function Contact() {
     return true;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.target;
+const handleSubmit = (e) => {
+  e.preventDefault();
+  const form = e.target;
 
-    if (!validateForm(form)) {
-      return;
-    }
+  if (!validateForm(form)) return;
 
-    setIsSending(true);
+  setIsSending(true);
 
-    emailjs
-      .sendForm(
-        "service_o0hu38r",
-        "template_gtw2vhe",
-        form
-      )
-      .then(
-        (result) => {
-          console.log("SUCCESS:", result.text);
-          setIsSending(false);
-          setNotification({
-            message: "Your message has been sent successfully! We will get back to you shortly.",
-            type: "success",
-          });
-          form.reset();
-        },
-        (error) => {
-          console.error("FAILED:", error);
-          setIsSending(false);
-          setNotification({
-            message: "Oops! Something went wrong. Please check your details and resend.",
-            type: "error",
-          });
-        }
-      );
-  };
+  // ✅ Set reply_to properly
+  form.querySelector('input[name="reply_to"]').value = form.email.value;
+
+  emailjs
+    .sendForm("service_o0hu38r", "template_gtw2vhe", form)
+    .then(
+      (result) => {
+        console.log("SUCCESS:", result.text);
+        setIsSending(false);
+        setNotification({
+          message: "Your message has been sent successfully! We will get back to you shortly.",
+          type: "success",
+        });
+        form.reset();
+      },
+      (error) => {
+        console.error("FAILED:", error);
+        setIsSending(false);
+        setNotification({
+          message: "Oops! Something went wrong. Please check your details and resend.",
+          type: "error",
+        });
+      }
+    );
+};
 
   const contactInfo = [
     {
       icon: <FaMapMarkerAlt className="contact-icon" />,
-      text: (
-        <>
-          32 Jacob Wy Collegeville, PA 19426, USA
-        </>
-      ),
+      text: <>32 Jacob Wy Collegeville, PA 19426, USA</>,
     },
     {
       icon: <FaPhoneAlt className="contact-icon" />,
@@ -121,7 +113,6 @@ function Contact() {
 
   return (
     <>
-      {/* Notification Toast */}
       {notification.message && (
         <div className={`custom-toast square ${notification.type} slide-in`}>
           {notification.type === "success" ? (
@@ -149,7 +140,7 @@ function Contact() {
         </Container>
       </section>
 
-      {/* Contact Section */}
+      {/* Contact Form Section */}
       <section className="contact-section py-5">
         <Container>
           <Row className="align-items-center">
@@ -172,20 +163,21 @@ function Contact() {
                 <Form onSubmit={handleSubmit}>
                   <input type="hidden" name="time" value={new Date().toLocaleString()} />
                   <input type="hidden" name="year" value={new Date().getFullYear()} />
+                  <input type="hidden" name="reply_to" />
 
                   <Row className="mb-3">
                     <Col md={4}>
-                      <FloatingLabel controlId="floatingName" label="Your Name" className="mb-3 mb-md-0">
+                      <FloatingLabel controlId="floatingName" label="Your Name">
                         <Form.Control type="text" placeholder="Your Name" name="name" />
                       </FloatingLabel>
                     </Col>
                     <Col md={4}>
-                      <FloatingLabel controlId="floatingEmail" label="Email Address" className="mb-3 mb-md-0">
+                      <FloatingLabel controlId="floatingEmail" label="Email Address">
                         <Form.Control type="email" placeholder="Email" name="email" />
                       </FloatingLabel>
                     </Col>
                     <Col md={4}>
-                      <FloatingLabel controlId="floatingPhone" label="Phone Number" className="mb-3 mb-md-0">
+                      <FloatingLabel controlId="floatingPhone" label="Phone Number">
                         <Form.Control type="tel" placeholder="Phone Number" name="phone" />
                       </FloatingLabel>
                     </Col>
@@ -193,12 +185,12 @@ function Contact() {
 
                   <Row className="mb-3">
                     <Col md={6}>
-                      <FloatingLabel controlId="floatingProduct" label="Product Name" className="mb-3 mb-md-0">
+                      <FloatingLabel controlId="floatingProduct" label="Product Name">
                         <Form.Control type="text" placeholder="Product Name" name="product" />
                       </FloatingLabel>
                     </Col>
                     <Col md={6}>
-                      <FloatingLabel controlId="floatingModel" label="Model No." className="mb-3 mb-md-0">
+                      <FloatingLabel controlId="floatingModel" label="Model No.">
                         <Form.Control type="text" placeholder="Model No." name="model" />
                       </FloatingLabel>
                     </Col>
@@ -213,20 +205,8 @@ function Contact() {
                     />
                   </FloatingLabel>
 
-                  <Button
-                    className="send-btn small-btn d-flex align-items-center justify-content-center"
-                    type="submit"
-                    disabled={isSending}
-                  >
-                    {isSending ? (
-                      <Spinner
-                        animation="border"
-                        size="sm"
-                        className="me-2 spinner-send-btn"
-                      />
-                    ) : (
-                      <FaPaperPlane className="me-2" />
-                    )}
+                  <Button type="submit" className="send-btn d-flex align-items-center justify-content-center" disabled={isSending}>
+                    {isSending ? <Spinner animation="border" size="sm" className="me-2" /> : <FaPaperPlane className="me-2" />}
                     {isSending ? "Sending..." : "Send"}
                   </Button>
                 </Form>
