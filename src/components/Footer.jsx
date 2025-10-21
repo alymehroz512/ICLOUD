@@ -60,11 +60,11 @@ function Footer() {
               <ul className="footer-contact list-unstyled">
                 <li>
                   <FaMapMarkerAlt className="footer-icon mt-1" />
-                  <span>11732 SE 269th PI Kent, WA 98030-8713 USA</span>
+                  <span>32 Jacob Wy Collegeville, PA 19426, USA</span>
                 </li>
                 <li>
                   <FaEnvelope className="footer-icon mt-1" />
-                  <span>info@hoopoelabs.com</span>
+                  <span>Info@icloudtechnologies.us</span>
                 </li>
                 <li>
                   <FaPhoneAlt className="footer-icon mt-1" />
