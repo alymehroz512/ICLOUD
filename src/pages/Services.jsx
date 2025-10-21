@@ -9,7 +9,7 @@ import {
   FaIndustry,
   FaChair,
   FaStethoscope,
-  FaLongArrowAltRight,
+  FaChevronRight
 } from "react-icons/fa";
 
 function Services() {
@@ -104,7 +104,7 @@ function Services() {
                     className="service-card-button mt-3"
                     variant="primary"
                   >
-                    {service.title} <FaLongArrowAltRight className="button-arrow" />
+                    {service.title} <FaChevronRight className="button-arrow" />
                   </Button>
                 </Card>
               </Col>

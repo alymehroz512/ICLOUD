@@ -1,0 +1,32 @@
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top button {
+  background-color: #029d7b; /* Matches your brand color */
+  color: white;
+  border: none;
+  width: 40px; /* Reduced from 50px */
+  height: 40px; /* Reduced from 50px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.back-to-top button:hover {
+  background-color: #027a5e; /* Darker shade for hover */
+}

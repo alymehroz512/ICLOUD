@@ -1,7 +1,8 @@
-// App.jsx
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import CustomNavbar from './components/CustomNavbar';
+import Footer from './components/Footer';
+import BackToTop from './components/BackToTop';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
@@ -12,7 +13,6 @@ import OfficeProducts from './pages/OfficeProducts';
 import IndustrialProducts from './pages/IndustrialProducts';
 import Furniture from './pages/Furniture';
 import MedicalEquipment from './pages/MedicalEquipment';
-import Footer from './components/Footer';
 
 // Scrolls to top on every route change
 function ScrollToTop() {
@@ -42,6 +42,7 @@ function AppRoutes() {
         <Route path="/medical-equipment" element={<MedicalEquipment />} />
       </Routes>
       <Footer />
+      <BackToTop />
     </>
   );
 }
